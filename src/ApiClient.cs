@@ -21,12 +21,14 @@ namespace IntakeQ.ApiClient
     {
         private readonly string _apiKey;
         private readonly string _baseUrl = "https://intakeq.com/api/v1/";
+        private bool enableConsole = false;
 
         public ApiClient(string apiKey)
         {
             _apiKey = apiKey;
 #if DEBUG
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            enableConsole = true;
 #endif
         }
 
@@ -68,6 +70,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
+                    if(enableConsole) Console.Write(json);
                     var intakes = JsonConvert.DeserializeObject<IEnumerable<IntakeSummary>>(json);
                     return intakes;
                 }
@@ -88,7 +91,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var intake = JsonConvert.DeserializeObject<Intake>(json);
                     return intake;
                 }
@@ -259,7 +262,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(json);
+                    if(enableConsole) Console.Write(json);
                     var clients = JsonConvert.DeserializeObject<IEnumerable<ClientProfile>>(json);
                     return clients;
                 }
@@ -411,7 +414,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var appointment = JsonConvert.DeserializeObject<Appointment>(json);
                     return appointment;
                 }
@@ -432,7 +435,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var settings = JsonConvert.DeserializeObject<AppointmentSettings>(json);
                     return settings;
                 }
@@ -479,7 +482,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var result = JsonConvert.DeserializeObject<IEnumerable<Invoice>>(json);
                     return result;
                 }
@@ -548,7 +551,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var result = JsonConvert.DeserializeObject<IEnumerable<Models.File>>(json);
                     return result;
                 }
@@ -589,7 +592,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var result = JsonConvert.DeserializeObject<IEnumerable<Folder>>(json);
                     return result;
                 }
@@ -656,7 +659,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var result = JsonConvert.DeserializeObject<IEnumerable<Practitioner>>(json);
                     return result;
                 }
@@ -804,7 +807,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if(enableConsole) Console.Write(json);
                     var result = JsonConvert.DeserializeObject<IEnumerable<Assistant>>(json);
                     return result;
                 }
