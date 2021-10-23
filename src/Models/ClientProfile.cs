@@ -7,7 +7,7 @@ namespace IntakeQ.ApiClient.Models
 {
     public class ClientProfile 
     {
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
