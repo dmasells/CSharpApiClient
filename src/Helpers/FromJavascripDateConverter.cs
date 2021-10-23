@@ -23,7 +23,7 @@ namespace IntakeQ.ApiClient.Helpers
             
             
             var epoch = date.Value.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-            serializer.Serialize(writer, epoch.ToString("N0"));
+            serializer.Serialize(writer, epoch);
         }
     }
 }
