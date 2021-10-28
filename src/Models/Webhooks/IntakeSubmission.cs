@@ -1,4 +1,4 @@
-namespace IntakeQ.ApiClient.Models
+namespace IntakeQ.ApiClient.Models.Webhooks
 {
     public class IntakeSubmission
     {
