@@ -28,7 +28,7 @@ namespace IntakeQ.ApiClient
             _apiKey = apiKey;
 #if DEBUG
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-            enableConsole = true;
+            //enableConsole = true;
 #endif
         }
 
@@ -905,7 +905,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if (enableConsole) Console.Write(json);
                     var notes = JsonConvert.DeserializeObject<IEnumerable<TreatmentNoteSummary>>(json);
                     return notes;
                 }
@@ -926,7 +926,7 @@ namespace IntakeQ.ApiClient
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    Console.Write(json);
+                    if (enableConsole) Console.Write(json);
                     var note = JsonConvert.DeserializeObject<TreatmentNote>(json);
                     return note;
                 }
